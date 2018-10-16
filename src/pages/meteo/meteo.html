@@ -1,0 +1,38 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title text-center>La météo dans ma ville</ion-title>
+  </ion-navbar>
+  <ion-navbar color="secondary">
+  <ion-title *ngIf="meteo" text-center>{{meteo.name}}</ion-title>
+  <ion-title *ngIf="day" text-center>{{day.date}}</ion-title>
+</ion-navbar>
+
+
+</ion-header>
+
+
+
+<ion-content padding>
+    <h4 text-center>Soleil levé : {{meteo.sunrise}}</h4>
+    <h4 text-center>Soleil couché : {{meteo.sunset}}</h4>
+    <h4 text-center>Voir météo pour</h4>
+      <ion-item>
+        <ion-label >Choisir un jour</ion-label>
+        <ion-select [(ngModel)]="filterday" interface="action-sheet">
+          <ion-option value="Mercredi">Mercredi</ion-option>
+          <ion-option value="Jeudi">Jeudi</ion-option>
+          <ion-option value="Vendredi">Vendredi</ion-option>
+          <ion-option value="Samedi">Samedi</ion-option>
+          <ion-option value="Dimanche">Dimanche</ion-option>
+        </ion-select>
+      </ion-item>
+      <button ion-button icon-left full (click) = "changeDay(filterday)" >
+        <ion-icon name="search">
+        </ion-icon>
+        Voir
+      </button>
+    <h4 text-center>{{day.condition}}</h4>
+    <p style="text-align:center;"><img [src]='day.icon'/></p>
+    <h4 text-center>Min : {{day.tmin}}/Max : {{day.tmax}}</h4>
+</ion-content>
